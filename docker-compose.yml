@@ -39,6 +39,19 @@ services:
       - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
+  rabbitmq:
+    container_name: rabbitmq
+    image: "rabbitmq:3-management"
+    hostname: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.config
+    networks:
+      - webnet
 networks:
   webnet:
 volumes:
